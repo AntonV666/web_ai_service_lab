@@ -1,0 +1,277 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family:
+      Inter,
+      Manrope,
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      sans-serif;
+    background: #ffffff;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+  }
+
+  .section-padding {
+    @apply py-20 sm:py-28 lg:py-32;
+  }
+
+  .section-title {
+    @apply text-center text-4xl font-light tracking-tight text-ink sm:text-5xl lg:text-6xl;
+  }
+
+  .btn {
+    @apply inline-flex min-h-12 items-center justify-center rounded-full px-7 py-3 text-center text-sm font-black transition duration-200 sm:min-w-56;
+  }
+
+  .btn-light {
+    @apply bg-white text-ink hover:-translate-y-0.5 hover:bg-cyan-50 hover:shadow-glow;
+  }
+
+  .btn-outline {
+    @apply border border-white/35 bg-white/10 text-white backdrop-blur hover:-translate-y-0.5 hover:border-white hover:bg-white hover:text-ink;
+  }
+
+  .btn-dark {
+    @apply bg-black text-white hover:-translate-y-0.5 hover:bg-electric hover:shadow-glow;
+  }
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(45, 212, 255, 0.22), transparent 24rem),
+    radial-gradient(circle at 36% 54%, rgba(19, 82, 255, 0.2), transparent 22rem),
+    radial-gradient(circle at 63% 42%, rgba(156, 39, 176, 0.22), transparent 21rem),
+    linear-gradient(90deg, rgba(4, 245, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(4, 245, 255, 0.08) 1px, transparent 1px);
+  background-size:
+    auto,
+    auto,
+    auto,
+    78px 78px,
+    78px 78px;
+  opacity: 0.72;
+  mask-image: radial-gradient(circle at center, black, transparent 76%);
+}
+
+.neural-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.neural-field::before,
+.neural-field::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 90vw;
+  height: 34rem;
+  border: 1px solid rgba(45, 212, 255, 0.22);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(-8deg);
+  box-shadow: 0 0 80px rgba(45, 212, 255, 0.18);
+}
+
+.neural-field::after {
+  width: 78vw;
+  height: 28rem;
+  border-color: rgba(168, 85, 247, 0.24);
+  transform: translate(-50%, -44%) rotate(12deg);
+}
+
+.neural-field span {
+  position: absolute;
+  width: 9rem;
+  height: 1px;
+  left: 50%;
+  top: 50%;
+  transform-origin: left center;
+  background: linear-gradient(90deg, rgba(45, 212, 255, 0.75), transparent);
+}
+
+.neural-field span::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -4px;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: #08e5ff;
+  box-shadow: 0 0 18px rgba(45, 212, 255, 0.95);
+}
+
+.neural-field span:nth-child(1) {
+  transform: rotate(8deg) translateX(5rem);
+}
+
+.neural-field span:nth-child(2) {
+  transform: rotate(28deg) translateX(7rem);
+}
+
+.neural-field span:nth-child(3) {
+  transform: rotate(48deg) translateX(9rem);
+}
+
+.neural-field span:nth-child(4) {
+  transform: rotate(71deg) translateX(6rem);
+}
+
+.neural-field span:nth-child(5) {
+  transform: rotate(96deg) translateX(8rem);
+}
+
+.neural-field span:nth-child(6) {
+  transform: rotate(124deg) translateX(9rem);
+}
+
+.neural-field span:nth-child(7) {
+  transform: rotate(148deg) translateX(6rem);
+}
+
+.neural-field span:nth-child(8) {
+  transform: rotate(176deg) translateX(8rem);
+}
+
+.neural-field span:nth-child(9) {
+  transform: rotate(202deg) translateX(7rem);
+}
+
+.neural-field span:nth-child(10) {
+  transform: rotate(226deg) translateX(10rem);
+}
+
+.neural-field span:nth-child(11) {
+  transform: rotate(248deg) translateX(8rem);
+}
+
+.neural-field span:nth-child(12) {
+  transform: rotate(272deg) translateX(6rem);
+}
+
+.neural-field span:nth-child(13) {
+  transform: rotate(294deg) translateX(9rem);
+}
+
+.neural-field span:nth-child(14) {
+  transform: rotate(314deg) translateX(7rem);
+}
+
+.neural-field span:nth-child(15) {
+  transform: rotate(334deg) translateX(9rem);
+}
+
+.neural-field span:nth-child(16) {
+  transform: rotate(356deg) translateX(6rem);
+}
+
+.neural-field span:nth-child(17) {
+  transform: rotate(35deg) translateX(15rem);
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.8), transparent);
+}
+
+.neural-field span:nth-child(18) {
+  transform: rotate(215deg) translateX(15rem);
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.8), transparent);
+}
+
+.service-visual {
+  position: relative;
+  min-height: 19rem;
+  overflow: hidden;
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(45, 212, 255, 0.26), transparent 12rem),
+    linear-gradient(135deg, rgba(10, 20, 34, 0.96), rgba(2, 5, 10, 0.98));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.service-visual span {
+  position: absolute;
+  border-radius: 8px;
+  border: 1px solid rgba(95, 221, 255, 0.68);
+  background: rgba(45, 212, 255, 0.1);
+  box-shadow: 0 0 24px rgba(45, 212, 255, 0.12);
+}
+
+.service-visual-bot span:nth-child(1) {
+  left: 14%;
+  top: 30%;
+  width: 28%;
+  height: 26%;
+}
+
+.service-visual-bot span:nth-child(2) {
+  right: 13%;
+  top: 25%;
+  width: 25%;
+  height: 22%;
+}
+
+.service-visual-bot span:nth-child(3) {
+  left: 38%;
+  top: 36%;
+  width: 24%;
+  height: 36%;
+  border-radius: 999px;
+  background: rgba(45, 212, 255, 0.18);
+}
+
+.service-visual-bot span:nth-child(4) {
+  right: 24%;
+  bottom: 18%;
+  width: 20%;
+  height: 16%;
+}
+
+.service-visual-dashboard {
+  background:
+    linear-gradient(90deg, rgba(4, 120, 87, 0.4), transparent),
+    linear-gradient(135deg, #102033, #071018);
+}
+
+.service-visual-dashboard span:nth-child(1) {
+  left: 8%;
+  top: 14%;
+  width: 84%;
+  height: 16%;
+}
+
+.service-visual-dashboard span:nth-child(2) {
+  left: 8%;
+  top: 38%;
+  width: 38%;
+  height: 42%;
+}
+
+.service-visual-dashboard span:nth-child(3) {
+  right: 8%;
+  top: 38%;
+  width: 38%;
+  height: 18%;
+}
+
+.service-visual-dashboard span:nth-child(4) {
+  right: 8%;
+  bottom: 20%;
+  width: 38%;
+  height: 18%;
+}

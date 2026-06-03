@@ -1,0 +1,11 @@
+services:
+  ai_service_lab_web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ai_service_lab_web
+    restart: unless-stopped
+    ports:
+      - "8091:80"
+    environment:
+      - NODE_ENV=production
