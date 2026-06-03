@@ -9,3 +9,16 @@ services:
       - "8091:80"
     environment:
       - NODE_ENV=production
+    depends_on:
+      - ai_service_lab_contact_api
+
+  ai_service_lab_contact_api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: ai_service_lab_contact_api
+    restart: unless-stopped
+    ports:
+      - "8093:8000"
+    env_file:
+      - .env

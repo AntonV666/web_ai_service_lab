@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 
 import { reachGoal } from '../analytics';
-
+import { sendContactForm } from '../contactApi';
 import { content } from '../content';
 
 type ContactModalProps = {
@@ -13,6 +13,9 @@ export default function ContactModal({
   isOpen,
   onClose,
 }: ContactModalProps) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
+
   useEffect(() => {
     if (!isOpen) return;
 
@@ -30,6 +33,38 @@ export default function ContactModal({
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (isSubmitting) return;
+
+    const formData = new FormData(event.currentTarget);
+
+    const payload = {
+      company: String(formData.get('company') || '').trim(),
+      contact: String(formData.get('contact') || '').trim(),
+      message: String(formData.get('message') || '').trim(),
+      personal_data_consent: formData.get('personal_data_consent') === 'accepted',
+    };
+
+    setError('');
+    setIsSubmitting(true);
+
+    try {
+      await sendContactForm(payload);
+
+      reachGoal('contact_form_submit');
+
+      window.location.href = '/success';
+    } catch (err) {
+      console.error(err);
+      setError(
+        'Не удалось отправить заявку. Пожалуйста, попробуйте ещё раз или напишите нам в Telegram.',
+      );
+      setIsSubmitting(false);
+    }
+  }
 
   return (
     <div
@@ -61,22 +96,7 @@ export default function ContactModal({
           </button>
         </div>
 
-        <form
-          action="https://formsubmit.co/support@ai-service-lab.ru"
-          method="POST"
-          className="mt-8 space-y-5"
-          onSubmit={() => reachGoal('contact_form_submit')}
-        >
-          <input
-            type="hidden"
-            name="_subject"
-            value="Новая заявка с сайта AI Service Lab"
-          />
-
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_next" value="https://ai-service-lab.ru/success" />
-
+        <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
           <div>
             <label className="mb-2 block text-sm font-semibold text-slate-700">
               Имя или компания
@@ -148,11 +168,18 @@ export default function ContactModal({
             </span>
           </label>
 
+          {error && (
+            <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
+              {error}
+            </div>
+          )}
+
           <button
             type="submit"
-            className="w-full rounded-xl bg-blue-600 px-6 py-4 font-bold text-white transition hover:bg-blue-700"
+            disabled={isSubmitting}
+            className="w-full rounded-xl bg-blue-600 px-6 py-4 font-bold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-400"
           >
-            Отправить заявку
+            {isSubmitting ? 'Отправляем заявку...' : 'Отправить заявку'}
           </button>
 
           <p className="text-center text-xs leading-5 text-slate-400">
