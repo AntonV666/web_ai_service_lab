@@ -1,6 +1,9 @@
 FROM node:22-alpine AS build
 
 WORKDIR /app
+
+ARG VITE_YANDEX_METRIKA_ID
+ENV VITE_YANDEX_METRIKA_ID=$VITE_YANDEX_METRIKA_ID
 COPY package*.json ./
 RUN npm ci
 COPY . .
