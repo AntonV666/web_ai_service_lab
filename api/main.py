@@ -6,6 +6,7 @@ from email.mime.multipart import MIMEMultipart
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
+from typing import Optional
 
 
 class ContactRequest(BaseModel):
@@ -13,6 +14,10 @@ class ContactRequest(BaseModel):
     contact: str = Field(min_length=3, max_length=200)
     message: str = Field(min_length=3, max_length=3000)
     personal_data_consent: bool
+    source: Optional[str] = None
+    site_source: Optional[str] = None
+    source_label: Optional[str] = None
+    subject_label: Optional[str] = None
 
 
 app = FastAPI(title="AI Service Lab Contact API")
@@ -51,10 +56,11 @@ def contact(payload: ContactRequest):
     if not all([smtp_host, smtp_user, smtp_password, mail_to, mail_from]):
         raise HTTPException(status_code=500, detail="SMTP is not configured")
 
-    subject = "Новая заявка с сайта AI Service Lab"
+    source_label = payload.source_label or payload.subject_label or "AI Service Lab"
+    subject = f"Новая заявка с сайта {source_label}"
 
     body = f"""
-Новая заявка с сайта AI Service Lab
+Новая заявка с сайта {source_label}
 
 Имя / компания:
 {payload.company}
@@ -64,6 +70,9 @@ def contact(payload: ContactRequest):
 
 Описание задачи:
 {payload.message}
+
+Источник заявки:
+{payload.site_source or payload.source or source_label}
 
 Согласие на обработку персональных данных:
 {"Да" if payload.personal_data_consent else "Нет"}
