@@ -3,11 +3,12 @@ import { content } from '../content';
 
 type FooterProps = {
   onOpenContact: () => void;
+  onOpenCookieSettings: () => void;
 };
 
-export default function Footer({ onOpenContact }: FooterProps) {
+export default function Footer({ onOpenContact, onOpenCookieSettings }: FooterProps) {
   return (
-    <footer className="bg-slate-950 py-16 text-white">
+    <footer className="bg-slate-950 py-16 text-white" id="contacts">
       <div className="container-page">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div>
@@ -90,7 +91,7 @@ export default function Footer({ onOpenContact }: FooterProps) {
               Документы
             </h4>
 
-            <nav className="mt-4 flex flex-col gap-3">
+            <nav className="mt-4 flex flex-col items-start gap-3">
               {content.footer.legal.map((link) => (
                 <a
                   key={link.label}
@@ -100,6 +101,14 @@ export default function Footer({ onOpenContact }: FooterProps) {
                   {link.label}
                 </a>
               ))}
+
+              <button
+                type="button"
+                onClick={onOpenCookieSettings}
+                className="text-left text-slate-400 transition hover:text-white"
+              >
+                Настройки cookies
+              </button>
             </nav>
           </div>
 

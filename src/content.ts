@@ -197,6 +197,7 @@ export const content = {
     legal: [
       { label: 'Политика конфиденциальности', href: '/privacy' },
       { label: 'Согласие на обработку персональных данных', href: '/personal-data' },
+      { label: 'Политика использования cookie', href: '/cookie-policy' },
     ],
     contacts: {
       telegram: 'Telegram',

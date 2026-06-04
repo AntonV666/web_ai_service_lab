@@ -17,11 +17,16 @@ import { reachGoal } from './analytics';
 
 export default function App() {
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [cookieSettingsOpenSignal, setCookieSettingsOpenSignal] = useState(0);
   const pathname = window.location.pathname;
 
   const openContactModal = () => {
     reachGoal('contact_form_open');
     setIsContactOpen(true);
+  };
+
+  const openCookieSettings = () => {
+    setCookieSettingsOpenSignal((value) => value + 1);
   };
 
   if (pathname === '/privacy') {
@@ -32,18 +37,24 @@ export default function App() {
     return <LegalPage variant="personal-data" />;
   }
 
+  if (pathname === '/cookie-policy') {
+    return <LegalPage variant="cookie-policy" />;
+  }
+
   if (pathname === '/success') {
     return (
       <>
         <YandexMetrika />
         <SuccessPage />
-        <CookieNotice />
+        <CookieNotice settingsOpenSignal={cookieSettingsOpenSignal} />
       </>
     );
   }
 
   return (
     <div className="min-h-screen bg-white text-ink">
+      <YandexMetrika />
+
       <Header onOpenContact={openContactModal} />
 
       <main>
@@ -55,15 +66,17 @@ export default function App() {
         <AboutCtaSection onOpenContact={openContactModal} />
       </main>
 
-      <Footer onOpenContact={openContactModal} />
+      <Footer
+        onOpenContact={openContactModal}
+        onOpenCookieSettings={openCookieSettings}
+      />
 
       <ContactModal
         isOpen={isContactOpen}
         onClose={() => setIsContactOpen(false)}
       />
 
-      <CookieNotice />
-      <YandexMetrika />
+      <CookieNotice settingsOpenSignal={cookieSettingsOpenSignal} />
     </div>
   );
 }
