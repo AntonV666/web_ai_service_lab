@@ -42,20 +42,20 @@ export default function HeroSection({
           )}
 
           <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row">
-            <button
-              onClick={onOpenContact}
-              className="rounded-full bg-blue-600 px-7 py-4 text-sm font-bold text-white shadow-lg shadow-blue-600/30 transition hover:-translate-y-0.5 hover:bg-blue-500"
-            >
-              {content.hero.primaryCta}
-            </button>
-
             <a
               href="#products"
-              onClick={() => reachGoal('products_click')}
-              className="rounded-full border border-white/30 bg-white/10 px-7 py-4 text-sm font-bold text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/20"
+              onClick={() => reachGoal('products_click')} 
+              className="rounded-full bg-blue-600 px-7 py-4 text-sm font-bold text-white shadow-lg shadow-blue-600/30 transition hover:-translate-y-0.5 hover:bg-blue-500"
             >
               {content.hero.secondaryCta}
             </a>
+
+            <button
+              onClick={onOpenContact}
+              className="rounded-full border border-white/30 bg-white/10 px-7 py-4 text-sm font-bold text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/20"
+            >
+              {content.hero.primaryCta}
+            </button>
           </div>
         </div>
       </div>
