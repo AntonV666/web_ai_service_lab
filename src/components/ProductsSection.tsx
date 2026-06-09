@@ -12,7 +12,7 @@ export default function ProductsSection() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-16 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
           {content.products.map((product) => (
             <article
               key={product.title}
