@@ -31,24 +31,6 @@ export default function Footer({ onOpenContact, onOpenCookieSettings }: FooterPr
               Навигация
             </h4>
 
-            <nav className="mt-4 flex flex-col gap-3">
-              {content.footer.links.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-slate-400 transition hover:text-white"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
-          </div>
-
-          <div>
-            <h4 className="text-sm font-bold uppercase tracking-[0.16em] text-slate-300">
-              Продукты
-            </h4>
-
             <nav className="mt-4 flex flex-col items-start gap-3">
               <a
                 href="https://ai-service-lab.ru/mini-shop/"
@@ -57,7 +39,7 @@ export default function Footer({ onOpenContact, onOpenCookieSettings }: FooterPr
                 onClick={() => reachGoal('mini_shop_click')}
                 className="text-slate-400 transition hover:text-white"
               >
-                Mini Shop SaaS
+                Интернет-магазин по подписке
               </a>
 
               <button
@@ -65,7 +47,7 @@ export default function Footer({ onOpenContact, onOpenCookieSettings }: FooterPr
                 onClick={onOpenContact}
                 className="text-left text-slate-400 transition hover:text-white"
               >
-                Ready Mini Shop
+                Готовый интернет-магазин
               </button>
 
               <button
@@ -73,7 +55,7 @@ export default function Footer({ onOpenContact, onOpenCookieSettings }: FooterPr
                 onClick={onOpenContact}
                 className="text-left text-slate-400 transition hover:text-white"
               >
-                Custom Mini Shop
+                Интернет-магазин под заказ
               </button>
 
               <button
@@ -82,6 +64,14 @@ export default function Footer({ onOpenContact, onOpenCookieSettings }: FooterPr
                 className="text-left text-slate-400 transition hover:text-white"
               >
                 Сайт для бизнеса
+              </button>
+
+              <button
+                type="button"
+                onClick={onOpenContact}
+                className="text-left text-slate-400 transition hover:text-white"
+              >
+                AI решения для бизнеса
               </button>
             </nav>
           </div>
